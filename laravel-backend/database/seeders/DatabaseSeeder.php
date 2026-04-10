@@ -13,24 +13,22 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create Admin
-        $admin = User::updateOrCreate(
-            ['email' => 'admin@example.com'],
-            [
-                'name' => 'Admin User',
-                'password' => Hash::make('password'),
-                'role' => 'admin',
-            ]
-        );
+        $admin = User::updateOrCreate([
+            'name'     => 'Admin User',
+            'email'    => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role'     => 'admin',
+        ]);
 
         // Create Members
-        $alice = User::create([
+        $alice = User::updateOrCreate([
             'name'     => 'Alice Johnson',
             'email'    => 'alice@example.com',
             'password' => Hash::make('password'),
             'role'     => 'member',
         ]);
 
-        $bob = User::create([
+        $bob = User::updateOrCreate([
             'name'     => 'Bob Smith',
             'email'    => 'bob@example.com',
             'password' => Hash::make('password'),
@@ -38,13 +36,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create Projects
-        $project1 = Project::create([
+        $project1 = Project::updateOrCreate([
             'name'        => 'Website Redesign',
             'description' => 'Complete overhaul of the company website.',
             'created_by'  => $admin->id,
         ]);
 
-        $project2 = Project::create([
+        $project2 = Project::updateOrCreate([
             'name'        => 'Mobile App MVP',
             'description' => 'Build the first version of the mobile application.',
             'created_by'  => $admin->id,
